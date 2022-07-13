@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/01-drum.css">
+  <title>Keyboard Drum</title>
+</head>
+<body>
+  <div class="container">
+    <div data-key="49" class="key">
+      <kbd>1</kbd>
+      <span>boom</span>
+    </div>
+    <div data-key="50" class="key">
+      <kbd>2</kbd>
+      <span>clap</span>
+    </div>
+    <div data-key="51" class="key">
+      <kbd>3</kbd>
+      <span>hihat</span>
+    </div>
+    <div data-key="52" class="key">
+      <kbd>4</kbd>
+      <span>kick</span>
+    </div>
+    <div data-key="53" class="key">
+      <kbd>5</kbd>
+      <span>openhat</span>
+    </div>
+    <div data-key="54" class="key">
+      <kbd>6</kbd>
+      <span>ride</span>
+    </div>
+    <div data-key="55" class="key">
+      <kbd>7</kbd>
+      <span>snare</span>
+    </div>
+    <div data-key="56" class="key">
+      <kbd>8</kbd>
+      <span>tink</span>
+    </div>
+    <div data-key="57" class="key">
+      <kbd>9</kbd>
+      <span>tom</span>
+    </div>
+  </div>
+
+  <audio data-key="49" src="../imgs-audios/drum-sounds/01 - JavaScript Drum Kit_sounds_boom.wav"></audio>
+  <audio data-key="50" src="../imgs-audios/drum-sounds/01 - JavaScript Drum Kit_sounds_clap.wav"></audio>
+  <audio data-key="51" src="../imgs-audios/drum-sounds/01 - JavaScript Drum Kit_sounds_hihat.wav"></audio>
+  <audio data-key="52" src="../imgs-audios/drum-sounds/01 - JavaScript Drum Kit_sounds_kick.wav"></audio>
+  <audio data-key="53" src="../imgs-audios/drum-sounds/01 - JavaScript Drum Kit_sounds_openhat.wav"></audio>
+  <audio data-key="54" src="../imgs-audios/drum-sounds/01 - JavaScript Drum Kit_sounds_ride.wav"></audio>
+  <audio data-key="55" src="../imgs-audios/drum-sounds/01 - JavaScript Drum Kit_sounds_snare.wav"></audio>
+  <audio data-key="56" src="../imgs-audios/drum-sounds/01 - JavaScript Drum Kit_sounds_tink.wav"></audio>
+  <audio data-key="57" src="../imgs-audios/drum-sounds/01 - JavaScript Drum Kit_sounds_tom.wav"></audio>
+
+  <script>
+    function playSound(e) {
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+      if (!audio) return;
+      audio.currentTime = 0;
+      audio.play();
+      key.classList.add('playing');
+    }
+
+    function removeTransition(e) {
+      if (e.propertyName !== 'transform') return;
+      this.classList.remove('playing');
+    }
+    
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+    window.addEventListener('keydown', playSound);
+  </script>
+</body>
+</html>

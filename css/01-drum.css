@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url(../imgs-audios/drum.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  backdrop-filter: brightness(0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 2em;
+  font-weight: bold;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.key {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 30%;
+  border: solid 2px #000;
+  background-color: rgba(255, 255, 255, 0.219);
+}
+
+span {
+  text-transform: uppercase;
+  font-size: .3em;
+  color: chartreuse;
+}
+
+.playing {
+  transition: transform 0.2s ease-in-out;
+  transform: scale(1.1);
+  border-color: chartreuse;
+  box-shadow: 0 0 10px chartreuse;
+}
